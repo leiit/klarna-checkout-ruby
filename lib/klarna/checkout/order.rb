@@ -48,6 +48,14 @@ module Klarna
         json
       end
 
+      def update_params
+        if !status.nil? && status != "checkout_incomplete"
+          json_sanitize({:status => status})
+        else
+          as_json
+        end
+      end
+
       private
 
       def merchant_validation
